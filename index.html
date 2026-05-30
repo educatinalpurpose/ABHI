@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vishv Book Publishers</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #dbeafe;
+      min-height: 100vh;
+      color: #1e293b;
+    }
+
+    /* LANG SELECTOR */
+    .lang-bar {
+      display: flex;
+      justify-content: flex-end;
+      padding: 14px 18px 0;
+    }
+    .lang-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 7px 14px;
+      font-size: 14px;
+      cursor: pointer;
+      color: #334155;
+    }
+    .lang-btn span { font-size: 18px; }
+
+    /* HERO */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px 20px 0;
+      text-align: center;
+    }
+    .logo-box {
+      background: #fff;
+      border-radius: 20px;
+      width: 110px;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+    .logo-box span { font-size: 58px; }
+
+    .hero h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+    .hero .subtitle {
+      color: #3b82f6;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+    .reg-notice {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 12px 22px;
+      font-size: 14px;
+      color: #475569;
+      margin-bottom: 20px;
+      width: 100%;
+      max-width: 380px;
+    }
+
+    /* TELEGRAM BUTTON */
+    .tg-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 32px;
+      width: 100%;
+      max-width: 380px;
+    }
+    .tg-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 18px;
+      background: linear-gradient(135deg, #38bdf8, #3b82f6);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 4px 18px rgba(59,130,246,0.35);
+      text-decoration: none;
+      margin-bottom: 8px;
+    }
+    .tg-btn svg { width: 22px; height: 22px; fill: #fff; }
+    .tg-apply {
+      font-size: 13px;
+      color: #64748b;
+      letter-spacing: 0.5px;
+    }
+
+    /* CARDS WRAPPER */
+    .section {
+      padding: 0 16px;
+      margin-bottom: 16px;
+    }
+
+    /* HANDWRITING CARD */
+    .card-white {
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .card-white h3 {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+    .card-white p {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /* ORANGE BANNER */
+    .orange-banner {
+      background: linear-gradient(135deg, #fb923c, #f59e0b);
+      border-radius: 16px;
+      padding: 24px 20px;
+      text-align: center;
+      margin: 0 16px 16px;
+    }
+    .fire-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 14px;
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .orange-banner h2 {
+      font-size: 24px;
+      font-weight: 900;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .orange-banner p {
+      font-size: 15px;
+      color: rgba(255,255,255,0.9);
+      font-weight: 500;
+    }
+
+    /* WORK FROM HOME SECTION */
+    .wfh-header {
+      text-align: center;
+      padding: 20px 16px 14px;
+    }
+    .wfh-header h2 {
+      font-size: 20px;
+      font-weight: 900;
+      color: #0f172a;
+      margin-bottom: 6px;
+    }
+    .wfh-header .select-plan {
+      font-size: 16px;
+      color: #3b82f6;
+      font-weight: 600;
+    }
+
+    /* PLAN CARDS */
+    .plans-wrap {
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    .plan-card {
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 24px 20px 20px;
+      position: relative;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: 2px solid transparent;
+    }
+    .plan-card.popular {
+      background: #eff6ff;
+      border: 2px solid #3b82f6;
+    }
+    .popular-badge {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #38bdf8, #3b82f6);
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 20px;
+      padding: 5px 16px;
+      white-space: nowrap;
+    }
+    .plan-num-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .plan-num {
+      background: #dbeafe;
+      color: #2563eb;
+      font-size: 22px;
+      font-weight: 900;
+      border-radius: 12px;
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .plan-card.popular .plan-num {
+      background: #2563eb;
+      color: #fff;
+    }
+    .plan-label {
+      font-size: 13px;
+      font-weight: 700;
+      color: #94a3b8;
+      letter-spacing: 2px;
+    }
+    .salary-label {
+      font-size: 12px;
+      color: #94a3b8;
+      letter-spacing: 2px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 4px;
+    }
+    .salary-amount {
+      font-size: 34px;
+      font-weight: 900;
+      color: #0f172a;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .plan-card.popular .salary-amount { color: #2563eb; }
+    .plan-divider {
+      height: 1px;
+      background: #e2e8f0;
+      margin-bottom: 14px;
+    }
+    .plan-features {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .plan-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: #334155;
+    }
+    .check-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+      background: #dcfce7;
+      color: #16a34a;
+    }
+    .plan-card.popular .check-icon {
+      background: #16a34a;
+      color: #fff;
+    }
+    .refundable { color: #16a34a; font-weight: 600; }
+
+    /* REFUND NOTICE */
+    .refund-notice {
+      margin: 0 16px 12px;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 12px;
+      padding: 14px 18px;
+      text-align: center;
+      font-size: 15px;
+      font-weight: 600;
+      color: #16a34a;
+    }
+
+    /* HINDI + ENGLISH NOTICE */
+    .bilingual-card {
+      margin: 0 16px 12px;
+      background: #fff;
+      border-radius: 14px;
+      padding: 18px 16px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .hindi-text {
+      font-size: 14px;
+      color: #475569;
+      line-height: 1.7;
+      margin-bottom: 8px;
+    }
+    .english-text {
+      font-size: 14px;
+      color: #334155;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* BOTTOM TELEGRAM BLOCK */
+    .tg-bottom {
+      margin: 0 16px 32px;
+      background: #dbeafe;
+      border-radius: 16px;
+      padding: 22px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .pointer-row {
+      font-size: 28px;
+      letter-spacing: 4px;
+      margin-bottom: 14px;
+    }
+
+    /* HOW IT WORKS */
+    .how-section {
+      padding: 8px 0 24px;
+    }
+    .how-section h2 {
+      text-align: center;
+      font-size: 22px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 18px;
+    }
+    .how-cards {
+      padding: 0 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .how-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 22px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .how-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 22px;
+    }
+    .how-icon.blue { background: #3b82f6; }
+    .how-icon.green { background: #dcfce7; }
+    .how-card h3 {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+    .how-card p {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.6;
+    }
+
+    /* VISIT WEBSITE */
+    .visit-link {
+      display: flex;
+      justify-content: center;
+      padding: 22px 0 16px;
+    }
+    .visit-link a {
+      color: #3b82f6;
+      font-size: 17px;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* TERMINAL */
+    .terminal {
+      margin: 0 16px 40px;
+      background: #1a1a2e;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 16px;
+      background: #16213e;
+    }
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot.red { background: #ff5f57; }
+    .dot.yellow { background: #febc2e; }
+    .dot.green { background: #28c840; }
+    .terminal-title {
+      font-family: monospace;
+      font-size: 13px;
+      color: #94a3b8;
+    }
+    .server-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: monospace;
+      font-size: 12px;
+      color: #28c840;
+    }
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #28c840;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+    .terminal-body {
+      padding: 16px;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 2;
+    }
+    .t-line { display: flex; gap: 8px; flex-wrap: wrap; }
+    .t-time { color: #475569; }
+    .t-tag { font-weight: 700; }
+    .t-tag.sys { color: #38bdf8; }
+    .t-tag.auth { color: #38bdf8; }
+    .t-tag.portal { color: #38bdf8; }
+    .t-tag.ready { color: #38bdf8; }
+    .t-msg { color: #4ade80; }
+    .t-cursor {
+      display: inline-block;
+      width: 10px;
+      height: 2px;
+      background: #94a3b8;
+      margin-top: 8px;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LANGUAGE BAR -->
+  <div class="lang-bar">
+    <button class="lang-btn">
+      <span>🌐</span> 🇬🇧 English <span style="font-size:12px;margin-left:2px;">▼</span>
+    </button>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="logo-box">
+      <span>📖</span>
+    </div>
+    <h1> Vishu Book Publishers</h1>
+    <p class="subtitle">Official Hiring Portal 2024</p>
+    <div class="reg-notice">Registration is Compulsory for all projects</div>
+    <div class="tg-wrap">
+      <a href="https://t.me/+FI6bB72d-pU3ZDk1" class="tg-btn" target="_blank">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21.94 2.09a1.5 1.5 0 0 0-1.52-.23L2.36 9.1a1.5 1.5 0 0 0 .1 2.83l4.08 1.25 1.93 5.79a1.5 1.5 0 0 0 2.55.52l2.3-2.68 4.44 3.27a1.5 1.5 0 0 0 2.35-1.02l2-15a1.5 1.5 0 0 0-.27-1.97zM9.89 14.94l-.97 2.9-.98-2.94 8.36-7.5-7.41 7.54z"/>
+        </svg>
+        JOIN TELEGRAM
+      </a>
+      <p class="tg-apply">(APPLY FOR THIS JOB NOW)</p>
+    </div>
+  </div>
+
+  <!-- HANDWRITING PROJECTS CARD -->
+  <div class="section">
+    <div class="card-white">
+      <h3>Handwriting Projects</h3>
+      <p>Work from home manually writing content into A4 notebooks. No experience required.</p>
+    </div>
+  </div>
+
+  <!-- ORANGE REGISTRATION BENEFIT BANNER -->
+  <div class="orange-banner">
+    <div class="fire-badge">🔥 Registration Benefit 🔥</div>
+    <h2>Get 50% Advance Salary</h2>
+    <p>within 30 mins!</p>
+  </div>
+
+  <!-- WORK FROM HOME HEADER -->
+  <div class="wfh-header">
+    <h2>🏠 WORK FROM HOME JOB'S 🏠</h2>
+    <p class="select-plan">✓ Select Writing Project Plan ✍️</p>
+  </div>
+
+  <!-- PLAN CARDS -->
+  <div class="plans-wrap">
+
+    <!-- PLAN 01 -->
+    <div class="plan-card">
+      <div class="plan-num-row">
+        <div class="plan-num">01</div>
+        <span class="plan-label">PLAN</span>
+      </div>
+      <div class="salary-label">SALARY</div>
+      <div class="salary-amount">₹25,000</div>
+      <div class="plan-divider"></div>
+      <div class="plan-features">
+        <div class="plan-feature">
+          <div class="check-icon">✓</div>
+          <span>50 Pages (100 Sides)</span>
+        </div>
+        <div class="plan-feature">
+          <div class="check-icon">✓</div>
+          <span>7 Days Duration</span>
+        </div>
+        <div class="plan-feature">
+          <div class="check-icon">✓</div>
+          <span>Reg Fee: ₹499 <span class="refundable">(Refundable)</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLAN 02 - MOST POPULAR -->
+    <div class="plan-card popular">
+      <div class="popular-badge">⭐ Most Popular</div>
+      <div class="plan-num-row">
+        <div class="plan-num">02</div>
+        <span class="plan-label">PLAN</span>
+      </div>
+      <div class="salary-label">SALARY</div>
+      <div class="salary-amount">₹30,000</div>
+      <div class="plan-divider"></div>
+      <div class="plan-features">
+        <div class="plan-feature">
+          <div class="check-icon">✓</div>
+          <span>90 Pages (180 Sides)</span>
+        </div>
+        <div class="plan-feature">
+          <div class="check-icon">✓</div>
+          <span>10 Days Duration</span>
+        </div>
+        <div class="plan-feature">
+          <div class="check-icon">✓</div>
+          <span>Reg Fee: ₹750 <span class="refundable">(Refundable)</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLAN 03 -->
+    <div class="plan-card">
+      <div class="plan-num-row">
+        <div class="plan-num">03</div>
+        <span class="plan-label">PLAN</span>
+      </div>
+      <div class="salary-label">SALARY</div>
+      <div class="salary-amount">₹35,000</div>
+      <div class="plan-divider"></div>
+      <div class="plan-features">
+        <div class="plan-feature">
+          <div class="check-icon">✓</div>
+          <span>120 Pages (240 Sides)</span>
+        </div>
+        <div class="plan-feature">
+          <div class="check-icon">✓</div>
+          <span>15 Days Duration</span>
+        </div>
+        <div class="plan-feature">
+          <div class="check-icon">✓</div>
+          <span>Reg Fee: ₹1,199 <span class="refundable">(Refundable)</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLAN 04 -->
+    <div class="plan-card">
+      <div class="plan-num-row">
+        <div class="plan-num">04</div>
+        <span class="plan-label">PLAN</span>
+      </div>
+      <div class="salary-label">SALARY</div>
+      <div class="salary-amount">₹40,000</div>
+      <div class="plan-divider"></div>
+      <div class="plan-features">
+        <div class="plan-feature">
+          <div class="check-icon">✓</div>
+          <span>190 Pages (380 Sides)</span>
+        </div>
+        <div class="plan-feature">
+          <div class="check-icon">✓</div>
+          <span>26 Days Duration</span>
+        </div>
+        <div class="plan-feature">
+          <div class="check-icon">✓</div>
+          <span>Reg Fee: ₹1,499 <span class="refundable">(Refundable)</span></span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- REFUND NOTICE -->
+  <div class="refund-notice">
+    💌 Project Registration fee is Refundable With Salary
+  </div>
+
+  <!-- BILINGUAL CARD -->
+  <div class="bilingual-card">
+    <p class="hindi-text">📒 यह एक सुरक्षित जॉब है जहां पर आप सभी घर बैठे बैठे आसानी से पैसे कमा सकते हो 📒</p>
+    <p class="english-text">This is a safe job where you can easily earn money sitting at home.</p>
+  </div>
+
+  <!-- BOTTOM TELEGRAM BLOCK -->
+  <div class="tg-bottom">
+    <div class="pointer-row">👇👇👇👇👇👇👇👇</div>
+    <a href="https://t.me/+FI6bB72d-pU3ZDk1" class="tg-btn" target="_blank" style="max-width:360px;width:100%;">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:22px;height:22px;fill:#fff;">
+        <path d="M21.94 2.09a1.5 1.5 0 0 0-1.52-.23L2.36 9.1a1.5 1.5 0 0 0 .1 2.83l4.08 1.25 1.93 5.79a1.5 1.5 0 0 0 2.55.52l2.3-2.68 4.44 3.27a1.5 1.5 0 0 0 2.35-1.02l2-15a1.5 1.5 0 0 0-.27-1.97zM9.89 14.94l-.97 2.9-.98-2.94 8.36-7.5-7.41 7.54z"/>
+      </svg>
+      JOIN TELEGRAM
+    </a>
+    <p class="tg-apply" style="margin-top:8px;">(APPLY FOR THIS JOB NOW)</p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="how-section">
+    <h2>How it works?</h2>
+    <div class="how-cards">
+      <div class="how-card">
+        <div class="how-icon blue">✏️</div>
+        <h3>Handwriting Task</h3>
+        <p>Simply copy provided content from digital images into A4 sized notebooks using a blue/black pen.</p>
+      </div>
+      <div class="how-card">
+        <div class="how-icon green">🛡️</div>
+        <h3>100% Refundable Fee</h3>
+        <p>Registration fee is just for security of our materials and is fully returned with your first salary.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VISIT OFFICIAL WEBSITE -->
+  <div class="visit-link">
+    <a href="#" target="_blank">Visit Official Website ↗️</a>
+  </div>
+
+  <!-- TERMINAL -->
+  <div class="terminal">
+    <div class="terminal-header">
+      <div class="terminal-dots">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
+      </div>
+      <div class="terminal-title">Recruitment Core</div>
+      <div class="server-status">
+        <div class="status-dot"></div>
+        SERVER ONLINE
+      </div>
+    </div>
+    <div class="terminal-body" id="terminal-body">
+    </div>
+  </div>
+
+  <script>
+    // Animated terminal
+    const lines = [
+      { time: null, tag: null, msg: null }, // spacing
+    ];
+
+    const terminalBody = document.getElementById('terminal-body');
+    const logLines = [
+      { tag: '[SYS_INIT]', tagClass: 'sys', msg: 'Loading handwriting modules...' },
+      { tag: '[AUTH]',     tagClass: 'auth', msg: 'Connection established securely.' },
+      { tag: '[PORTAL]',   tagClass: 'portal', msg: 'Recruitment portal online.' },
+      { tag: '[READY]',    tagClass: 'ready', msg: 'Awaiting user registration...' },
+    ];
+
+    function getTime() {
+      const now = new Date();
+      const h = String(now.getHours()).padStart(2,'0');
+      const m = String(now.getMinutes()).padStart(2,'0');
+      const s = String(now.getSeconds()).padStart(2,'0');
+      return `[${h}:${m}:${s}]`;
+    }
+
+    function renderLines() {
+      terminalBody.innerHTML = '';
+      logLines.forEach(l => {
+        const div = document.createElement('div');
+        div.className = 't-line';
+        div.innerHTML = `<span class="t-time">${getTime()}</span><span class="t-tag ${l.tagClass}">${l.tag}</span><span class="t-msg">${l.msg}</span>`;
+        terminalBody.appendChild(div);
+      });
+      const cursor = document.createElement('div');
+      cursor.className = 't-cursor';
+      terminalBody.appendChild(cursor);
+    }
+
+    renderLines();
+    setInterval(renderLines, 1000);
+  </script>
+
+</body>
+</html>
